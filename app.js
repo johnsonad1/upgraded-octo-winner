@@ -30,7 +30,7 @@ Expense.prototype = {
         }
         */
     }
-}
+};
 
 
 
@@ -84,7 +84,7 @@ function expenseController() { //Later add Constructor argument to this
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
             var ids = this.allItems.map(function(current, index) {
                 return current.id;
-            })
+            });
 
             var index = ids.indexOf(id);
 
@@ -174,7 +174,7 @@ function UIController() {
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
             fieldsArr.forEach(function(current) {
                 current.value = "";
-            })
+            });
             
             // Put focus on description field
             fields[0].focus();
@@ -202,19 +202,20 @@ function UIController() {
             
             // Add unpaid class
             if(obj.paymentStatus === 'unpaid') {
-                document.querySelector('#' + type + '-' + obj.id).classList.add('unpaid')
+                document.querySelector('#' + type + '-' + obj.id).classList.add('unpaid');
             }
         },
 
         deleteListItem: function(selectorID) {
             // The only way we have is remove child, so we first need to move up to the parent and then delete the child
-            var el = document.getElementById(selectorID)
+            var el = document.getElementById(selectorID);
             el.parentNode.removeChild(el);
         },
 
         displayTotals: function(budget, incomeTotal, expensesTotal, percentage) {
-            var type;
-            budget >= 0 ? type = 'income' : type = 'expense';
+            var type = budget >= 0 ? 'income' : 'expense';
+            // var type;
+            // budget >= 0 ? type = 'income' : type = 'expense';
             
             document.querySelector(this.DOMSelectors.budgetLabel).textContent = this.formatNumber(budget, type);
             document.querySelector(this.DOMSelectors.incomeLabel).textContent = this.formatNumber(incomeTotal, 'income');
@@ -265,7 +266,8 @@ function UIController() {
             }
             
             // Decimal part
-            numSplit.length === 2 ? decimal = numSplit[1] : decimal = '00';
+            decimal = numSplit.length === 2 ? numSplit[1] : '00';
+            
             if (decimal.length > 2) {
                 decimal = decimal.substr(0,2);
             } else if (decimal.length === 1) {
@@ -273,7 +275,8 @@ function UIController() {
             }
             
             // Sign
-            type === 'expense' ? sign = '-' : sign = '+';
+            sign = type === 'expense' ? '-' : '+';
+            
             
             // Output
             return sign + ' ' + int + '.' + decimal;
@@ -310,7 +313,7 @@ function controller(incCtrl, expCtrl, UICtrl, Inc, Exp) {
         init: function() {
             this.handleType();
             this.handleInputBtn();
-            this.handleInputPressEnter()
+            this.handleInputPressEnter();
             this.handleDelete();
             UICtrl.setDOMSelectors(this.DOMSelectors);
             UICtrl.displayMonth();
@@ -320,7 +323,7 @@ function controller(incCtrl, expCtrl, UICtrl, Inc, Exp) {
         // Only add this later
         handleType: function() {
             document.querySelector(this.DOMSelectors.inputType).addEventListener('change', function() {
-                UICtrl.changedType()
+                UICtrl.changedType();
             });
         },
         
@@ -338,7 +341,7 @@ function controller(incCtrl, expCtrl, UICtrl, Inc, Exp) {
                         
                     } else if (input.type === "income") {
                         // Method borrowing, be setting the 'this' var to the object that want to borrow the method. We will simply not pass the payment status, which will then be set as undefined, and ignored by the function constructor.
-                        newItem = expCtrl.addItem.call(incCtrl, Inc, input.description, input.value)
+                        newItem = expCtrl.addItem.call(incCtrl, Inc, input.description, input.value);
                     }
                     
                     // 3. Add the new item to the UI
@@ -370,7 +373,7 @@ function controller(incCtrl, expCtrl, UICtrl, Inc, Exp) {
         handleDelete: function() {
             var newItem, self = this;
             document.querySelector(this.DOMSelectors.container).addEventListener('click', function(event) {
-                var clickID, splitID, type, id
+                var clickID, splitID, type, id;
                 //Leave the parent node out first. Not the cleanest solution, as we're relying very much on the DOM structure, basically hard coding it here. We could use a while loop instead
                 clickID = event.target.parentNode.parentNode.parentNode.parentNode.id;
                 
@@ -453,7 +456,7 @@ var inc = incomeController(Income);
 var UI = UIController();
 var ctrl = controller(inc, exp, UI, Income, Expense);
 
-ctrl.init()
+ctrl.init();
 
 
 
