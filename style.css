@@ -34,9 +34,9 @@ body {
 
 .top {
     height: 40vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(back.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(./resources/anchor-lee-181403.jpg);
     background-size: cover;
-    background-position: center;
+    background-position: center bottom;
     position: relative;
 }
 
