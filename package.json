@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/johnsonad1/upgraded-octo-winner/issues"
   },
-  "homepage": "https://github.com/johnsonad1/upgraded-octo-winner#readme"
+  "homepage": "https://github.com/johnsonad1/upgraded-octo-winner#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
