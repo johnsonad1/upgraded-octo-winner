@@ -1,3 +1,4 @@
+
 /*
 This is more advanced stuff, and I want you to first get 100% familiar with what I showed you before. Code a couple of projects, maybe some bigger ones, whithout using object oriented JS, so that you will find the limitaions that it has when the code grows bigger and bigger.
 
